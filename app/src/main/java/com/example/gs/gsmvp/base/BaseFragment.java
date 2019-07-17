@@ -28,7 +28,7 @@ import android.view.ViewGroup;
 public abstract class BaseFragment<V extends BaseView, P extends BasePresenter> extends Fragment {
     protected String TAG = getClass().getSimpleName();
 
-    private P mPresenter;
+    protected P mPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,7 +49,6 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter> 
 
     /**
      * 创建继承于BasePresenter的子类
-     *
      * @return
      */
     protected abstract P createPresenter();
@@ -68,5 +67,10 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter> 
         }
 
         super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

@@ -18,15 +18,21 @@ package com.example.gs.gsmvp.base;
 
 import java.lang.ref.WeakReference;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 public abstract class BasePresenter<V extends BaseView, M extends BaseModel> {
-    private WeakReference weakReference;
+    protected String TAG = getClass().getSimpleName();
+
+    protected WeakReference<V> mWeakReference;
     protected M mModel;
+    protected CompositeDisposable mCompositeDisposable;//用于取消RxJava任务
 
     public BasePresenter() {
         mModel = createModel();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
-    abstract M createModel();
+    protected abstract M createModel();
 
     /**
      * 将传入的View接口实例，通过弱引用（WeakReference）把Presenter与View进行绑定。
@@ -34,7 +40,7 @@ public abstract class BasePresenter<V extends BaseView, M extends BaseModel> {
      * @param v 界面更新接口实例
      */
     public void attach(V v) {
-        weakReference = new WeakReference<>(v);
+        mWeakReference = new WeakReference<>(v);
     }
 
     public void onResume() {
@@ -45,9 +51,13 @@ public abstract class BasePresenter<V extends BaseView, M extends BaseModel> {
      * 将Presenter与View进行解绑，并释放内存
      */
     public void detach() {
-        if (weakReference != null) {
-            weakReference.clear();
-            weakReference = null;
+        if (mWeakReference != null) {
+            mWeakReference.clear();
+            mWeakReference = null;
+        }
+        if (mCompositeDisposable != null){
+            mCompositeDisposable.clear();
+            mCompositeDisposable = null;
         }
     }
 }
