@@ -16,6 +16,8 @@
 
 package com.example.gs.gsmvp.base;
 
+import com.example.gs.gsmvp.util.LogUtil;
+
 import java.lang.ref.WeakReference;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -28,6 +30,7 @@ public abstract class BasePresenter<V extends BaseView, M extends BaseModel> {
     protected CompositeDisposable mCompositeDisposable;//用于取消RxJava任务
 
     public BasePresenter() {
+        LogUtil.e(TAG, "BasePresenter 构造方法");
         mModel = createModel();
         mCompositeDisposable = new CompositeDisposable();
     }
@@ -40,6 +43,7 @@ public abstract class BasePresenter<V extends BaseView, M extends BaseModel> {
      * @param v 界面更新接口实例
      */
     public void attach(V v) {
+        LogUtil.e(TAG, "attach 绑定");
         mWeakReference = new WeakReference<>(v);
     }
 
@@ -51,6 +55,7 @@ public abstract class BasePresenter<V extends BaseView, M extends BaseModel> {
      * 将Presenter与View进行解绑，并释放内存
      */
     public void detach() {
+        LogUtil.e(TAG, "detach 解绑");
         if (mWeakReference != null) {
             mWeakReference.clear();
             mWeakReference = null;

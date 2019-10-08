@@ -22,6 +22,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.gs.gsmvp.util.LogUtil;
+
 /**
  * Main UI for the statistics screen.
  */
@@ -61,6 +63,7 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter> 
 
     @Override
     public void onDestroyView() {
+        LogUtil.e(TAG, "onDestroyView");
         if (mPresenter != null) {
             mPresenter.detach();
             mPresenter = null;
@@ -71,6 +74,7 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter> 
 
     @Override
     public void onDestroy() {
+        LogUtil.e(TAG, "onDestroy");
         super.onDestroy();
     }
 }

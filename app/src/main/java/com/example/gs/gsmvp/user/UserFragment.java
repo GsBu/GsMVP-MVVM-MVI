@@ -1,43 +1,39 @@
-package com.example.gs.gsmvp.home;
+package com.example.gs.gsmvp.user;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.gs.gsmvp.R;
 import com.example.gs.gsmvp.base.BaseFragment;
-import com.example.gs.gsmvp.user.UserActivity;
 
-public class HomeFragment extends BaseFragment<HomeContract.View, HomeContract.Presenter>
-        implements HomeContract.View, View.OnClickListener {
+public class UserFragment extends BaseFragment<UserContract.View, UserContract.Presenter>
+        implements UserContract.View, View.OnClickListener {
 
-    private Button btGetData, btUser;
+    private Button btGetData;
     private TextView tvTitle;
 
-    public static HomeFragment newInstance() {
-        HomeFragment fragment = new HomeFragment();
+    public static UserFragment newInstance() {
+        UserFragment fragment = new UserFragment();
         return fragment;
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home;
+        return R.layout.fragment_user;
     }
 
     @Override
     protected void initViewOrEvent(View view) {
         btGetData = view.findViewById(R.id.bt_get_data);
-        btUser = view.findViewById(R.id.bt_user);
         tvTitle = view.findViewById(R.id.tv_title);
 
         btGetData.setOnClickListener(this);
-        btUser.setOnClickListener(this);
     }
 
     @Override
-    protected HomeContract.Presenter createPresenter() {
-        return new HomePresenter();
+    protected UserContract.Presenter createPresenter() {
+        return new UserPresenter();
     }
 
     @Override
@@ -50,10 +46,6 @@ public class HomeFragment extends BaseFragment<HomeContract.View, HomeContract.P
         switch(v.getId()){
             case R.id.bt_get_data:
                 mPresenter.getData();
-                break;
-            case R.id.bt_user:
-                Intent intent = new Intent(HomeFragment.this.getActivity(), UserActivity.class);
-                startActivity(intent);
                 break;
             default:
                 break;

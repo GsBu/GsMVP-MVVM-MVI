@@ -1,4 +1,4 @@
-package com.example.gs.gsmvp.home;
+package com.example.gs.gsmvp.user;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -6,7 +6,8 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class HomeModel implements HomeContract.Model {
+public class UserModel implements UserContract.Model {
+    protected String TAG = getClass().getSimpleName();
 
     @Override
     public Observable<String> requestData() {
@@ -20,6 +21,7 @@ public class HomeModel implements HomeContract.Model {
                     // Restore the interrupted status
                     Thread.currentThread().interrupt();
                 }
+
                 emitter.onNext("从网络获取到的数据");
                 emitter.onComplete();
             }
