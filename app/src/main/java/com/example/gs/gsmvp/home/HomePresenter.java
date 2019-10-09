@@ -8,7 +8,7 @@ public class HomePresenter extends HomeContract.Presenter {
     private Disposable disposable;
 
     @Override
-    void getData() {
+    public void getData() {
         disposable = mModel.requestData()
                 .subscribe(new Consumer<String>() {
                     @Override
@@ -28,9 +28,4 @@ public class HomePresenter extends HomeContract.Presenter {
     protected HomeContract.Model createModel() {
         return new HomeModel();
     }
-
-/*    @Override
-    public void detach() {
-        super.detach();
-    }*/
 }

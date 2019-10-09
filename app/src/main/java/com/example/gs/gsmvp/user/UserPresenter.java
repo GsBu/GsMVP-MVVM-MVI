@@ -10,7 +10,7 @@ public class UserPresenter extends UserContract.Presenter {
     private Disposable disposable;
 
     @Override
-    void getData() {
+    public void getData() {
         disposable = mModel.requestData()
                 .subscribe(new Consumer<String>() {
                     @Override
@@ -30,10 +30,5 @@ public class UserPresenter extends UserContract.Presenter {
     @Override
     protected UserContract.Model createModel() {
         return new UserModel();
-    }
-
-    @Override
-    public void detach() {
-        super.detach();
     }
 }

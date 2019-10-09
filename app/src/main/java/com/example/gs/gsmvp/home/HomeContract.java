@@ -16,6 +16,6 @@ public interface HomeContract {
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
-        abstract void getData();
+        public abstract void getData();
     }
 }
