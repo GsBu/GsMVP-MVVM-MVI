@@ -18,13 +18,13 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_home);
 
         HomeFragment homeDetailFragment = (HomeFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.fl_content);
+                .findFragmentById(R.id.container);
 
         if (homeDetailFragment == null) {
             homeDetailFragment = HomeFragment.newInstance();
 
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
-                    homeDetailFragment, R.id.fl_content);
+                    homeDetailFragment, R.id.container);
         }
     }
 }

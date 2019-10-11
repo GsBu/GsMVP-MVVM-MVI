@@ -1,4 +1,4 @@
-package com.example.gs.gsmvp.user;
+package com.example.gs.gsmvp.test;
 
 import android.os.Bundle;
 
@@ -6,7 +6,7 @@ import com.example.gs.gsmvp.R;
 import com.example.gs.gsmvp.base.BaseActivity;
 import com.example.gs.gsmvp.util.ActivityUtils;
 
-public class UserActivity extends BaseActivity {
+public class TestActivity extends BaseActivity {
 
     @Override
     protected void onInitParams(Bundle bundle) {
@@ -15,16 +15,16 @@ public class UserActivity extends BaseActivity {
 
     @Override
     protected void setupViews(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_user);
+        setContentView(R.layout.activity_test);
 
-        UserFragment homeDetailFragment = (UserFragment) getSupportFragmentManager()
+        TestFragment fragment = (TestFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.container);
 
-        if (homeDetailFragment == null) {
-            homeDetailFragment = UserFragment.newInstance();
+        if (fragment == null) {
+            fragment = TestFragment.newInstance();
 
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
-                    homeDetailFragment, R.id.container);
+                    fragment, R.id.container);
         }
     }
 }
