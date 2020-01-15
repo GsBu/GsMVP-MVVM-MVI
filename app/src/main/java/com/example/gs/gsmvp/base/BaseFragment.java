@@ -50,7 +50,7 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter> 
     protected abstract void initViewOrEvent(View view);
 
     /**
-     * 创建继承于BasePresenter的子类
+     * 创建继承于BasePresenter的子类的实例
      * @return
      */
     protected abstract P createPresenter();
@@ -58,7 +58,9 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter> 
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.onResume();
+        if (mPresenter != null) {
+            mPresenter.onResume();
+        }
     }
 
     @Override
