@@ -35,12 +35,13 @@ public abstract class BaseFragment<V extends BaseView, P extends BasePresenter> 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(getLayoutId(), container, false);
-        initViewOrEvent(root);
         mPresenter = createPresenter();
         if (mPresenter != null) {
             mPresenter.attach((V) this);
         }
+
+        View root = inflater.inflate(getLayoutId(), container, false);
+        initViewOrEvent(root);
 
         return root;
     }
