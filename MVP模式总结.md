@@ -87,7 +87,7 @@ public class UserPresenter {
 
     public void loadUser(int id) {
         UserBean user = mUserModel.load(id);
-        mUserrView.setFirstName(user.getFirstName());//通过调用IUserView的方法来更新显示
+        mUserView.setFirstName(user.getFirstName());//通过调用IUserView的方法来更新显示
         mUserView.setLastName(user.getLastName());
     }
 }
@@ -678,11 +678,11 @@ public void detach(){
 /*************************分割线********************************/
 /**
  * View.java
- * 退出时销毁持有View
+ * 退出时销毁Presentr持有的View
  */
 @Override
 protected void onDestroy() {
-    presenter.detachView();
+    presenter.detach();
     super.onDestroy();
 }
 ```
