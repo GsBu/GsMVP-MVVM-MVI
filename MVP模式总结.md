@@ -920,7 +920,7 @@ public class Presenter {
 8. [浅谈 MVP in Android](https://blog.csdn.net/lmj623565791/article/details/46596109)
 9. [一篇文章彻底搞懂 MVP](https://www.jianshu.com/p/ef4e61cd659d)
 10. [如何更高效的使用MVP以及官方MVP架构解析](https://blog.csdn.net/DanteStones/article/details/51445208)
-11. [Android架构：2018 主流大厂MVP模式是怎样](https://blog.csdn.net/qwe851023/article/details/83417780)？
+11. [Android架构：2018 主流大厂MVP模式是怎样](https://blog.csdn.net/qwe851023/article/details/83417780)
 12. [Google 官网MVP解读](https://www.kancloud.cn/alex_wsc/android_library_framework/452692)
 13. [Android官方MVP架构项目解析](https://www.jianshu.com/p/389c9ae1a82c)
 # 5 源码

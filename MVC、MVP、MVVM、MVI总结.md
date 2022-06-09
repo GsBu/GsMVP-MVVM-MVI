@@ -1,0 +1,39 @@
+> [转载](https://github.com/livoras/blog/issues/11)
+# MVC
+## 1、依赖关系
+![image](https://camo.githubusercontent.com/86f1a241ca735b210298f07161f6a630d1fbcd54dbbfcbfda61d06310f1cb775/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76632d6465702e706e67)
+> `Controller`和`View`都依赖`Model`层
+> `Controller`和`View`可以互相依赖。在一些网上的资料`Controller`和`View`之间的依赖关系可能不一样，有些是单向依赖，有些是双向依赖，这个其实关系不大，后面会看到它们的依赖关系都是为了把处理用户行为触发的事件处理权交给`Controller`。
+## 2、调用关系
+用户的对View操作以后，View捕获到这个操作，会把处理的权利交移给Controller（Pass calls）；Controller会对来自View数据进行预处理、决定调用哪个Model的接口；然后由Model执行相关的业务逻辑；当Model变更了以后，会通过观察者模式（Observer Pattern）通知View；View通过观察者模式收到Model变更的消息以后，会向Model请求最新的数据，然后重新更新界面。如下图：
+![image](https://camo.githubusercontent.com/79c92cef86f6df73f4d52a920ee143111784ae7c1a6ea8bf88bf5c10f241c73c/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76632d63616c6c2e706e67)
+看似没有什么特别的地方，但是由几个需要特别关注的关键点：
+> 1、View是把控制权交移给Controller，Controller执行应用程序相关的应用逻辑（对来自View数据进行预处理、决定调用哪个Model的接口等等）。
+> 2、Controller操作Model，Model执行业务逻辑对数据进行处理。但不会直接操作View，可以说它是对View无知的。
+> 3、View和Model的同步消息是通过观察者模式进行，而同步操作是由View自己请求Model的数据然后对视图进行更新。
+
+需要特别注意的是MVC模式的精髓在于第三点：Model的更新是通过观察者模式告知View的，具体表现形式可以是Pub/Sub或者是触发Events。而网上很多对于MVC的描述都没有强调这一点。通过观察者模式的好处就是：不同的MVC三角关系可能会有共同的Model，一个MVC三角中的Controller操作了Model以后，两个MVC三角的View都会接受到通知，然后更新自己。保持了依赖同一块Model的不同View显示数据的实时性和准确性。我们每天都在用的观察者模式，在几十年前就已经被大神们整合到MVC的架构当中。
+# MVP
+## 1、依赖关系
+![image](https://camo.githubusercontent.com/09b9de4412631e3d99815e93470addeb64e26ba7d44d4b363b3f0b4c95ebb70a/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76702d6465702e706e67)
+> **MVP打破了View原来对于Model的依赖，其余的依赖关系和MVC模式一致。**
+
+## 2、调用关系
+![image](https://camo.githubusercontent.com/ef9133aa2a556b25db313c380af2a5fc7f4485b9e00dfc4c8b22acb33b53b196/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76702d63616c6c2e706e67)
+和MVC模式一样，用户对View的操作都会从View交移给Presenter。Presenter会执行相应的应用程序逻辑，并且对Model进行相应的操作；而这时候Model执行完业务逻辑以后，也是通过观察者模式把自己变更的消息传递出去，但是是传给Presenter而不是View。Presenter获取到Model变更的消息以后，通过View提供的接口更新界面。
+
+关键点：
+
+> 1、View不再负责同步的逻辑，而是由Presenter负责。Presenter中既有应用程序逻辑也有同步逻辑。
+> 2、View需要提供操作界面的接口给Presenter进行调用。（关键）
+
+对比在MVC中，Controller是不能操作View的，View也没有提供相应的接口；而在MVP当中，Presenter可以操作View，View需要提供一组对界面操作的接口给Presenter进行调用；Model仍然通过事件广播自己的变更，但由Presenter监听而不是View。
+# MVVM
+> **MVVM可以看作是一种特殊的MVP（Passive View）模式，或者说是对MVP模式的一种改良。**
+## 1、依赖关系
+![image](https://camo.githubusercontent.com/40816aad4a5f64cbb7402a92dcd885e6a75f9ab380eefee894b4462cd959114e/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76766d2d6465702e706e67)
+MVVM的依赖关系和MVP依赖，只不过是把P换成了VM。
+## 2、调用关系
+MVVM的调用关系和MVP一样。但是，在ViewModel当中会有一个叫Binder，或者是Data-binding engine的东西。以前全部由Presenter负责的View和Model之间数据同步操作交由给Binder处理。你只需要在View的模版语法当中，指令式地声明View上的显示的内容是和Model的哪一块数据绑定的。当ViewModel对进行Model更新的时候，Binder会自动把数据更新到View上去，当用户对View进行操作（例如表单输入），Binder也会自动把数据更新到Model上去。这种方式称为：Two-way data-binding，双向数据绑定。可以简单而不恰当地理解为一个模版引擎，但是会根据数据变更实时渲染。
+![image](https://camo.githubusercontent.com/79e75c235fdaab2fe86ef5a2b8f921dfa8100111fcfc311b6f0088f3db58501e/687474703a2f2f6c69766f7261732e6769746875622e696f2f626c6f672f6d76632f6d76766d2d63616c6c2e706e67)
+> 也就是说，MVVM把View和Model的同步逻辑自动化了。以前Presenter负责的View和Model同步不再手动地进行操作，而是交由框架所提供的Binder进行负责。只需要告诉Binder，View显示的数据对应的是Model哪一部分即可。
