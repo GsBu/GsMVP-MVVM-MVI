@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.gs.gsmvp.R;
+import com.example.gs.R;
 import com.example.gs.gsmvp.base.BaseFragment;
 import com.example.gs.gsmvp.search.SearchActivity;
 import com.example.gs.gsmvp.user.UserActivity;

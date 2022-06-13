@@ -2,7 +2,7 @@ package com.example.gs.gsmvp.util;
 
 import android.util.Log;
 
-import com.example.gs.gsmvp.BuildConfig;
+import com.example.gs.BuildConfig;
 
 public class LogUtil {
 

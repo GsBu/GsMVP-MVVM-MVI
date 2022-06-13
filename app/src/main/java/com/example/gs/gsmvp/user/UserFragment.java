@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.gs.gsmvp.R;
+import com.example.gs.R;
 import com.example.gs.gsmvp.base.BaseFragment;
 
 public class UserFragment extends BaseFragment<UserContract.View, UserContract.Presenter>

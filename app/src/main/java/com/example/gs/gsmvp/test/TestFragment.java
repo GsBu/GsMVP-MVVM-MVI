@@ -2,7 +2,7 @@ package com.example.gs.gsmvp.test;
 
 import android.view.View;
 
-import com.example.gs.gsmvp.R;
+import com.example.gs.R;
 import com.example.gs.gsmvp.base.BaseFragment;
 
 public class TestFragment extends BaseFragment<TestContract.View, TestContract.Presenter>

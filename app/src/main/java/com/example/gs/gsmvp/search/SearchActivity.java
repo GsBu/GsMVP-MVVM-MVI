@@ -5,7 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
-import com.example.gs.gsmvp.R;
+import com.example.gs.R;
 import com.example.gs.gsmvp.base.BaseMVPActivity;
 
 public class SearchActivity extends BaseMVPActivity<SearchContract.View, SearchContract.Presenter>

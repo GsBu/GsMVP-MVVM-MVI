@@ -2,7 +2,7 @@ package com.example.gs.gsmvp.test;
 
 import android.os.Bundle;
 
-import com.example.gs.gsmvp.R;
+import com.example.gs.R;
 import com.example.gs.gsmvp.base.BaseActivity;
 import com.example.gs.gsmvp.util.ActivityUtils;
 
