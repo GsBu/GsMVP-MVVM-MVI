@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".gsmvp.user.UserActivity" />
+        <activity android:name=".gsmvp.searchdatabinding.SearchDataBindingActivity" />
     </application>
 
 </manifest>

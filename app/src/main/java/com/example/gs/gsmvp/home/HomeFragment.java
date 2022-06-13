@@ -8,12 +8,13 @@ import android.widget.TextView;
 import com.example.gs.R;
 import com.example.gs.gsmvp.base.BaseFragment;
 import com.example.gs.gsmvp.search.SearchActivity;
+import com.example.gs.gsmvp.searchdatabinding.SearchDataBindingActivity;
 import com.example.gs.gsmvp.user.UserActivity;
 
 public class HomeFragment extends BaseFragment<HomeContract.View, HomeContract.Presenter>
         implements HomeContract.View, View.OnClickListener {
 
-    private Button btGetData, btUser, btSearch;
+    private Button btGetData, btUser, btSearch, btSearch2;
     private TextView tvTitle;
 
     public static HomeFragment newInstance() {
@@ -32,10 +33,12 @@ public class HomeFragment extends BaseFragment<HomeContract.View, HomeContract.P
         btUser = view.findViewById(R.id.bt_user);
         tvTitle = view.findViewById(R.id.tv_title);
         btSearch = view.findViewById(R.id.bt_search);
+        btSearch2 = view.findViewById(R.id.bt_search_2);
 
         btGetData.setOnClickListener(this);
         btUser.setOnClickListener(this);
         btSearch.setOnClickListener(this);
+        btSearch2.setOnClickListener(this);
     }
 
     @Override
@@ -61,6 +64,10 @@ public class HomeFragment extends BaseFragment<HomeContract.View, HomeContract.P
                 break;
             case R.id.bt_search:
                 intent = new Intent(HomeFragment.this.getActivity(), SearchActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.bt_search_2:
+                intent = new Intent(HomeFragment.this.getActivity(), SearchDataBindingActivity.class);
                 startActivity(intent);
                 break;
             default:
