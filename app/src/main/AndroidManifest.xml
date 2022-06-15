@@ -13,9 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".gsmvp.search.SearchActivity" />
-        <activity android:name=".gsmvp.test.TestActivity" />
-        <activity android:name=".gsmvp.home.HomeActivity">
+        <activity android:name=".gsmvvm.DataBindingMvvmActivity"
+            android:label="DataBinding实现MVVM"></activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +24,12 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity android:name=".gsmvp.search.SearchActivity" />
+        <activity android:name=".gsmvp.test.TestActivity" />
+        <activity android:name=".gsmvp.home.HomeActivity"></activity>
         <activity android:name=".gsmvp.user.UserActivity" />
-        <activity android:name=".gsmvp.searchdatabinding.SearchDataBindingActivity" />
+        <activity android:name=".gsmvp.searchdatabinding.SearchDataBindingActivity"
+            android:label="MVP + DataBinding"/>
     </application>
 
 </manifest>
