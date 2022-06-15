@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewMode"
+            type="com.example.gs.gsmvvm.databinding.DataBindingMvvmViewModel" />
+        <variable
+            name="presenterMode"
+            type="com.example.gs.gsmvvm.databinding.DataBindingMvvmPresenterModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,12 +24,14 @@
             android:text="获取数据"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{()->viewMode.getData()}"/>
 
         <TextView
             android:id="@+id/tv_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{presenterMode.content1}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/bt_get" />
