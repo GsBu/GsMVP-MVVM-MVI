@@ -13,8 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".gsmvvm.livedata.LiveDataMvvmActivity"
-            android:label="LiveData实现MVVM"></activity>
+        <activity android:name=".mvi.MviActivity"
+            android:label="MVI"></activity>
+        <activity
+            android:name=".gsmvvm.livedata.LiveDataMvvmActivity"
+            android:label="LiveData实现MVVM" />
         <activity
             android:name=".gsmvvm.databinding.DataBindingMvvmActivity"
             android:label="DataBinding实现MVVM" />

@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.example.gs.gsmvp.home.HomeActivity;
 import com.example.gs.gsmvvm.databinding.DataBindingMvvmActivity;
 import com.example.gs.gsmvvm.livedata.LiveDataMvvmActivity;
+import com.example.gs.mvi.MviActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bt_live_data_mvvm:
                 intent = new Intent(MainActivity.this, LiveDataMvvmActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.bt_mvi:
+                intent = new Intent(MainActivity.this, MviActivity.class);
                 startActivity(intent);
                 break;
             default:

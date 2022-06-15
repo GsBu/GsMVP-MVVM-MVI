@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".gsmvvm.livedata.LiveDataMvvmActivity">
+    tools:context=".mvi.MviActivity">
     <Button
         android:id="@+id/bt_get"
         android:layout_width="wrap_content"
@@ -12,7 +12,7 @@
         android:text="获取数据"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tv_data"
@@ -21,20 +21,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bt_get" />
-    <Button
-        android:id="@+id/bt_get2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="获取数据2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_data" />
-
-    <TextView
-        android:id="@+id/tv_data2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bt_get2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
