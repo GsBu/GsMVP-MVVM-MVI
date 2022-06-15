@@ -5,7 +5,7 @@
     <data>
         <variable
             name="resultBean"
-            type="com.example.gs.gsmvp.searchdatabinding.ResultBean" />
+            type="com.example.gs.gsmvp.searchdatabinding.SearchActivityBean" />
         <variable
             name="presenter"
             type="com.example.gs.gsmvp.searchdatabinding.SearchPresenter" />

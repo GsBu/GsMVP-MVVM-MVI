@@ -1,17 +1,14 @@
 package com.example.gs.gsmvp.searchdatabinding;
 
-import android.view.View;
-
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 public class SearchPresenter {
 
-    public ResultBean mResultBean;
+    public SearchActivityBean mSearchActivityBean;
     private SearchModel mModel = new SearchModel();
 
     public SearchPresenter(){
-        mResultBean = new ResultBean();
+        mSearchActivityBean = new SearchActivityBean();
     }
 
     public void sendEmail() {
@@ -19,7 +16,7 @@ public class SearchPresenter {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        mResultBean.result.set("Databinding修改数据");
+                        mSearchActivityBean.result.set("Databinding修改数据");
                     }
                 }, new Consumer<Throwable>() {
                     @Override

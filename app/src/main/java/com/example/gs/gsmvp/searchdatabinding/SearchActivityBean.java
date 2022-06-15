@@ -8,7 +8,7 @@ import androidx.databinding.ObservableField;
  * 文件    GsMVP+MVVM+MVI
  * 描述
  */
-public class ResultBean {
+public class SearchActivityBean {
     public final ObservableField<String> result = new ObservableField();
     {
         result.set("初始数据");
