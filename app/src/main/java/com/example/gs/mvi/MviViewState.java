@@ -7,6 +7,10 @@ package com.example.gs.mvi;
  * 描述
  */
 public class MviViewState {
+
+    public static final int INITIAL = 0;
+    public static final int SUCCESS = 1;
+
     private int state;
     private String content;
 

@@ -14,4 +14,8 @@ public class MviViewAction {
     public static class Bt2Click extends MviViewAction{
 
     }
+
+    public static class Bt3Click extends MviViewAction{
+
+    }
 }

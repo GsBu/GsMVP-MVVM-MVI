@@ -20,7 +20,7 @@ public class MviViewModel extends ViewModel {
     private int mCount;
 
     {
-        emit(new MviViewState(0, "初始状态"));
+        emit(new MviViewState(MviViewState.INITIAL, "初始状态"));
     }
 
     private void btClick(){
@@ -44,7 +44,11 @@ public class MviViewModel extends ViewModel {
         if(action instanceof MviViewAction.Bt1Click){
             btClick();
         }else if(action instanceof MviViewAction.Bt2Click){
-            emit(new MviViewEvent.UpdateText("ViewModel中的数据"));
+            state.setState(MviViewState.SUCCESS);
+            state.setContent("获取数据成功");
+            emit(state);
+        }else if(action instanceof MviViewAction.Bt3Click){
+            emit(new MviViewEvent.ShowDialog("ViewModel中返回的数据"));
         }
     }
 }

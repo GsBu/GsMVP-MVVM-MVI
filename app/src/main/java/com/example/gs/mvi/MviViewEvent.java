@@ -23,10 +23,10 @@ public class MviViewEvent {
         }
     }
 
-    public static class UpdateText extends MviViewEvent{
+    public static class ShowDialog extends MviViewEvent{
         private String message;
 
-        public UpdateText(String message){
+        public ShowDialog(String message){
             this.message = message;
         }
 

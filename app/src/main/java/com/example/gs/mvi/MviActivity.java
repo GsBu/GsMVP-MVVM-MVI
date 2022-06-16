@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,7 @@ import com.example.gs.R;
 
 public class MviActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btGet, btGet2;
+    private Button btGet, btGet2, btGet3;
     private TextView tvData;
 
     private MviViewModel mViewModel;
@@ -26,9 +27,11 @@ public class MviActivity extends AppCompatActivity implements View.OnClickListen
 
         btGet = findViewById(R.id.bt_get);
         btGet2 = findViewById(R.id.bt_get2);
+        btGet3 = findViewById(R.id.bt_get3);
         tvData = findViewById(R.id.tv_data);
         btGet.setOnClickListener(this);
         btGet2.setOnClickListener(this);
+        btGet3.setOnClickListener(this);
 
         mViewModel = ViewModelProviders.of(this).get(MviViewModel.class);
         mViewModel.viewState.observe(this, new Observer<MviViewState>() {
@@ -55,13 +58,18 @@ public class MviActivity extends AppCompatActivity implements View.OnClickListen
             case R.id.bt_get2:
                 mViewModel.dispatch(new MviViewAction.Bt2Click());
                 break;
+            case R.id.bt_get3:
+                mViewModel.dispatch(new MviViewAction.Bt3Click());
+                break;
             default:
                 break;
         }
     }
 
     private void renderViewState(MviViewState state){
-        if(state.getState() == 0){
+        if(state.getState() == MviViewState.INITIAL){
+            tvData.setText(state.getContent());
+        }else if(state.getState() == MviViewState.SUCCESS){
             tvData.setText(state.getContent());
         }
     }
@@ -70,9 +78,20 @@ public class MviActivity extends AppCompatActivity implements View.OnClickListen
         if(event instanceof MviViewEvent.ShowToast){
             MviViewEvent.ShowToast showToast = (MviViewEvent.ShowToast)event;
             Toast.makeText(this, showToast.getMessage(), Toast.LENGTH_SHORT).show();
-        }else if(event instanceof MviViewEvent.UpdateText){
-            MviViewEvent.UpdateText updateText = (MviViewEvent.UpdateText)event;
-            tvData.setText(updateText.getMessage());
+        }else if(event instanceof MviViewEvent.ShowDialog){
+            MviViewEvent.ShowDialog showDialog = (MviViewEvent.ShowDialog)event;
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_layout);
+            TextView textView = dialog.findViewById(R.id.tv_content);
+            textView.setText(showDialog.getMessage());
+            Button button = dialog.findViewById(R.id.bt_ok);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
         }
     }
 }
