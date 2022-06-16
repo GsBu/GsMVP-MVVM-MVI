@@ -15,6 +15,7 @@ import io.reactivex.functions.Consumer;
 public class LiveDataMvvmViewModel extends ViewModel {
 
     private LiveDataMvvmModel mModel;
+
     public MutableLiveData<String> mGetDataLiveData = new MutableLiveData();
 
     //为保证对外暴露的LiveData不可变（LiveData中的setValue方法是protected权限，外部不能使用），增加一个状态就要添加两个LiveData变量
